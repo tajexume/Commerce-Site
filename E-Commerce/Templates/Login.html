@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+
+    <!--Bootstrap Stylesheet-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--CSS Stylesheet-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <!--Google Fonts Connections-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,300&family=Noto+Serif:ital,wght@1,700&display=swap" rel="stylesheet">
+
+
+  </head>
+  <body>
+      <div class="">
+    <h1 style="text-align: center; margin-top: 0; padding: 0px"><em>Please Login to Continue!</em></h1>
+        </div>
+    <div class="">
+    <form method="POST" action="{{ url_for('login') }}" class="rounded-border-gradient">
+        {{ form.csrf_token }}
+        <div style="margin: auto" class="row"><p>Please input Email or Username and Password</p></div>
+        {% if not request.values.get("error") %}
+        <div style="" class="validator">{{ form.username.label }}: {{ form.username(placeholder="Enter Username") }}</div>
+        <div style="" class="validator">{{ form.email.label }}: {{ form.email(placeholder="Enter Email") }}</div>
+        <div style="" class="validator">{{ form.password.label }}: {{ form.password(placeholder="Enter Password") }}</div>
+        {% else %}
+        <div style="" class="validator">{{ form.username.label }}: {{ form.username(placeholder=request.values.get("error")) }}</div>
+        <div style="" class="validator">{{ form.email.label }}: {{ form.email(placeholder=request.values.get("error")) }}</div>
+        <div style="" class="validator">{{ form.password.label }}: {{ form.password(placeholder=request.values.get("error")) }}</div>
+        {% endif %}
+        <div style="" class="validator submit">{{ form.submit }}</div>
+    </form>
+  </div>
+  </body>
+  <script src="{{url_for('static', filename='js/login.js')}}"></script>
+
+</html>
